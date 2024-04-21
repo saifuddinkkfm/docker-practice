@@ -1,0 +1,23 @@
+services:
+  mylaravel:
+    container_name: laravel-container
+    build: .
+    volumes:
+      - ./mylaravel-app:/var/www/html
+    ports:
+      - "9000:80"
+
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel_docker
+    ports:
+      - "3306:3306"  # Space after hyphen and in quotes
+
+  phpmyadmin:
+    image: phpmyadmin:latest  # Corrected image name
+    ports:
+      - "9001:80"
+    environment:
+      PMA_ARBITRARY: 1  # Corrected environment variable
